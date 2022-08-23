@@ -31,5 +31,8 @@ ALTER TABLE pessoa MODIFY COLUMN idPessoa INT AUTO_INCREMENT;
 -- O AUTO_INCREMENT VAI DE 100 EM 100
 ALTER TABLE pessoa AUTO_INCREMENT = 100; 
 
--- EXIBINDO UMA FRASE
+-- EXIBINDO UMA FRASE COM O CONTACT() => Concatenação
 SELECT CONCAT('A pessoa ' ,nome, ', pesa ' ,peso, ', mede ' ,altura, ' e ganha ' ,salario, '!') as Frase FROM pessoa; 
+
+-- EXIBINDO A FRASE MAS EM ORDEM CRESCENTE
+SELECT CONCAT('A pessoa ' ,nome, ', pesa ' ,peso, ', mede ' ,altura, ' e ganha' ,salario, '!' ) AS 'Frase Ordenada Crescente' FROM pessoa ORDER BY nome;
