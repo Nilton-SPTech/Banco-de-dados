@@ -36,3 +36,6 @@ SELECT CONCAT('A pessoa ' ,nome, ', pesa ' ,peso, ', mede ' ,altura, ' e ganha '
 
 -- EXIBINDO A FRASE MAS EM ORDEM CRESCENTE
 SELECT CONCAT('A pessoa ' ,nome, ', pesa ' ,peso, ', mede ' ,altura, ' e ganha' ,salario, '!' ) AS 'Frase Ordenada Crescente' FROM pessoa ORDER BY nome;
+
+-- TREINAMENTO 
+SELECT CONCAT('A pessoa ' ,nome, ' pesa ' ,peso, 'kg') AS 'Peso usúario' FROM pessoa; 
