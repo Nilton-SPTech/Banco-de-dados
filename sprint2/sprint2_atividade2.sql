@@ -57,3 +57,32 @@ SELECT musica.titulo, album.nomeAlbum FROM musica
 SELECT musica.titulo, album.nomeAlbum FROM musica   
     JOIN album ON album.idAlbum = musica.fk_idAlbum
         WHERE album.tipoAlbum = 'Digital';
+
+ALTER TABLE musica DROP COLUMN artista;
+
+
+-- CRIANDO A TABELA ARTISTA 
+CREATE TABLE artista (
+    idArtista INT PRIMARY KEY AUTO_INCREMENT, 
+    nomeArtista VARCHAR(50), 
+    idadeArtista INT
+);
+
+INSERT INTO artista(nomeArtista, idadeArtista) VALUES 
+    ('BTS', 10), 
+    ('Pitbull do Funk', 41), 
+    ('Nirvana', 00);
+
+ALTER TABLE musica ADD COLUMN fk_idArtista INT;
+
+ALTER TABLE musica ADD FOREIGN KEY (fk_idArtista)
+    REFERENCES artista(idArtista);
+
+
+UPDATE musica SET fk_idArtista = 3
+    WHERE idMusica = 4;
+
+
+SELECT titulo, nomeArtista, nomeAlbum FROM musica m 
+    JOIN album a ON a.idAlbum = m.fk_idAlbum  
+        JOIN artista ar ON ar.idArtista = m.fk_idArtista;
