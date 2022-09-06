@@ -33,3 +33,5 @@ INSERT INTO Funcionario (nome) VALUES
 SELECT CONCAT('Meu nome completo é ', IFNULL(nome, ''), 
     ' ', IFNULL(sobrenome, '')) 'Mensagem de olá' 
         FROM Funcionario;
+
+DROP TABLE Funcionario;
