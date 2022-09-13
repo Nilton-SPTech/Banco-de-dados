@@ -1,0 +1,27 @@
+CREATE DATABASE sprint2; 
+
+USE sprint2; 
+
+CREATE TABLE Funcionario(
+
+    idFunc INT PRIMARY KEY AUTO_INCREMENT
+
+);
+
+-- CRIANDO O USUARIO PARA TER ACESSO
+CREATE USER 'estagiario'@'localhost' IDENTIFIED BY
+    'SPTECH';
+
+-- DANDO PRIVILÉGIOS PARA TODAS AS TABELAS 
+GRANT ALL privileges ON faculdade1adsc.*
+    TO 'estagiario'@'localhost';
+
+--DANDO ALGUNS PRIVILÉGIOS NAS TABELAS, ELE NÃO PODE FAZER TUDO
+GRANT SELECT,UPDATE,DELETE,CREATE ON
+    faculdade1adsc.*
+    TO 'estagiario'@'localhost';
+
+-- DANDO CERTEZA PARA EMPREGAR AS PERMISSÕES
+FLUSH privileges; 
+
+DELETE USER

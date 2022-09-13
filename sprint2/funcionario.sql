@@ -1,4 +1,4 @@
-CREATE TABLE sprint2; 
+CREATE DATABASE sprint2; 
 
 USE sprint2; 
 
