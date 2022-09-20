@@ -118,3 +118,37 @@ SELECT s.nome as NomeFunc, f.nome as NomeSuper, d.nome as NomeDep
  FROM funcionario f
   LEFT JOIN funcionario s ON s.idFunc = f.fkSuper
    LEFT JOIN dependente d ON f.idFunc = d.fkFunc;
+
+-- UTILIZANDO O LEFT JOIN E IFNULL
+SELECT f.nome as NomeFunc, IFNULL(d.nome, 'SEM DEPENDENTE') as NomeDep 
+ FROM funcionario f 
+  LEFT JOIN dependente d ON f.idFunc = d.fkFunc;
+
+SELECT f.*, s.nome 
+ FROM funcionario f 
+  LEFT JOIN  funcionario s ON f.fkSuper = s.idFunc
+    WHERE f.fkSuper is null; 
+
+
+
+--------------------------------------------------------------
+
+-- TABELA TREINADOR
+CREATE TABLE treinador (
+    idTreinador INT PRIMARY KEY AUTO_INCREMENT, 
+    nome VARCHAR(45),
+    tel CHAR(12), 
+    email VARCHAR(45)
+); 
+ALTER TABLE treinador ADD COLUMN fkExperiente INT; 
+ALTER TABLE treinador ADD FOREIGN KEY (fkExperiente) REFERENCES treinador (idTreinador);
+
+
+-- TABELA NADADOR
+CREATE TABLE nadador(
+    idNadador INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45), 
+    origem VARCHAR(45), 
+    dtNasc DATE, 
+    fkTreinador INT, FOREIGN KEY (fkTreinador) REFERENCES treinador(idTreinador)
+);
