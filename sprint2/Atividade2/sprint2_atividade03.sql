@@ -61,7 +61,8 @@ SELECT * FROM setor
 		WHERE nomeSetor = 'RH';
         
 SELECT * FROM funcionario 
-	JOIN acompanhante ON idFuncionario = fkFuncionario;
+	JOIN acompanhante ON idFuncionario = fkFuncionario
+        WHERE nomeFunc = 'Vanessa';
     
 SELECT * FROM funcionario 
 	JOIN setor ON idSetor = fkSetor
