@@ -44,7 +44,7 @@ SELECT CONCAT('O funcionario ', f.nome, ' tem como dependente o(a)', d.nome) as 
 
 
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 --PERMISSÕES DCL (Data Control Language)
 
@@ -64,3 +64,57 @@ GRANT SELECT,UPDATE,DELETE,CREATE ON
 -- DANDO CERTEZA PARA EMPREGAR AS PERMISSÕES
 FLUSH privileges; 
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE DATABASE domingos;
+
+USE domingos; 
+
+
+CREATE TABLE funcionario(
+    idFunc INT PRIMARY KEY AUTO_INCREMENT, 
+    nome VARCHAR(45),
+    salario DECIMAL(10,2), 
+    fkSuper INT, 
+    CONSTRAINT fkSupervisor FOREIGN KEY (fkSuper)
+        REFERENCES funcionario(idFunc)
+);
+
+CREATE TABLE dependente (
+    idDep INT, 
+    fkFunc INT, 
+    FOREIGN KEY (fkFunc) REFERENCES funcionario (idFunc), 
+    PRIMARY KEY(idDep, fkFunc), 
+    nome VARCHAR(45), 
+    parentesco VARCHAR(45)
+);
+
+-- CRIAR UM FUNCIONARIO SUPERVISOR
+INSERT INTO funcionario VALUES 
+    (null, 'Domingos', 8.99, null); 
+
+
+-- INSERIR OS FUNCIONARIOS SUPERVISIONADOS PELO DOMINGOS
+INSERT INTO funcionario VALUES  
+    (null, 'Vivian', 1.99,1), 
+    (null, 'Paulo', 1.99,1);
+
+INSERT INTO funcionario (nome, salario, fkSuper) VALUES 
+    ('Thiago', 0.99, 2);
+
+INSERT INTO dependente VALUES
+    (1,1,'Sabádo','esposa'), 
+    (1,2,'Betinha', 'mãe'),
+    (2,1,'Feriado','pai'), 
+    (4,1,'Tânia','irmã');
+
+-- RECURSÃO 
+SELECT f.nome as NomeFunc, s.nome as NomeSuper FROM funcionario f
+    JOIN funcionario s ON s.idFunc = f.fkSuper;
+
+
+-- NOME DO DEPENDENTE / UTILIZANDO O LEFT JOIN
+SELECT s.nome as NomeFunc, f.nome as NomeSuper, d.nome as NomeDep 
+ FROM funcionario f
+  LEFT JOIN funcionario s ON s.idFunc = f.fkSuper
+   LEFT JOIN dependente d ON f.idFunc = d.fkFunc;

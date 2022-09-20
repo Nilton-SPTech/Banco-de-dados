@@ -128,7 +128,7 @@ SELECT * FROM treinador orientador
 		WHERE orientador.nomeTreinador LIKE 'Dara';
         
 SELECT * FROM treinador ex 
-	JOIN treinador nEx ON ex.idTreinador = nEx.fkTreinadorEx
+	JOIN treinador nEx ON ex.idTreinador = nEx.fkTreinadorEx    
 		JOIN nadador ON ex.idTreinador = nadador.fkTreinador;
         
 SELECT * FROM treinador nEx 
