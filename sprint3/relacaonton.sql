@@ -37,3 +37,31 @@ INSERT INTO Endereco VALUES
 
 SELECT * FROM Pessoa; 
 SELECT * FROM Endereco; 
+
+
+INSERT INTO EnderecoCompleto VALUES
+    (1500, 'apto 100',1,1),
+    (595, '10 andar',2,2),
+    (595, '6 andar',3,3);
+
+SELECT  Pessoa.nome as Nome,
+        Endereco.bairro as Bairro
+    FROM Pessoa
+    JOIN EnderecoCompleto ON idPessoa = fkPessoa 
+    JOIN Endereco ON idEndereco = fkEndereco; 
+
+
+SELECT * FROM Pessoa 
+    RIGHT JOIN EnderecoCompleto ON idPessoa = fkPessoa 
+    RIGHT JOIN Endereco ON idEndereco = fkEndereco; 
+
+
+SELECT nome, bairro, cidade FROM Pessoa 
+    LEFT JOIN EnderecoCompleto ON idPessoa = fkPessoa 
+    LEFT JOIN Endereco ON idEndereco = fkEndereco
+    WHERE fkEndereco IS NULL
+UNION
+SELECT nome, bairro, cidade FROM Pessoa 
+    RIGHT JOIN EnderecoCompleto ON idPessoa = fkPessoa 
+    RIGHT JOIN Endereco ON idEndereco = fkEndereco
+    WHERE fkPessoa IS NULL; 
