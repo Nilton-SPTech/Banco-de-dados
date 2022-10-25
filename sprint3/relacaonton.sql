@@ -74,7 +74,7 @@ SELECT nome, bairro, cidade FROM Pessoa
 SELECT COUNT(*) as 'Quantidade de registros' FROM Pessoa; 
 
 INSERT INTO pessoa VALUES
-    (null, 'Estela', null);
+    (null, 'Nathan', 1.99);
 
 SELECT COUNT(salario) 'Quantidade de salários' FROM Pessoa;
 
@@ -101,3 +101,25 @@ SELECT AVG(salario) FROM Pessoa;
 --ROUND / ARRENDONDAR 
 -- ROUND( *valor que queremos arredondar*, *casas decimais*)
 SELECT ROUND(AVG(salario), 2) FROM Pessoa;  
+
+--TRUNCATE()
+SELECT TRUNCATE(AVG(salario), 2) FROM Pessoa; 
+
+--DISTINCT
+-- TRAZ APENAS OS SALÁRIOS DIFERENTES, ELES NÃO REPETEM OS MESMOS VALORES
+SELECT AVG(DISTINCT salario) FROM Pessoa;
+
+
+--GROUP BY - Ele agrupa os resultados dos operadores matematicos com os campos do campo de dados 
+SELECT bairro, TRUNCATE(AVG(salario), 2) FROM Pessoa 
+    JOIN EnderecoCompleto ON idPessoa = fkPessoa 
+    JOIN Endereco ON idEndereco = fkEndereco
+    GROUP BY bairro;  
+
+
+-- SELECT DENTRO DO WHERE - Ele funciona para selecionar os valores de um operador metamático
+SELECT nome, salario FROM Pessoa 
+    WHERE salario = (SELECT MIN(salario) FROM Pessoa)
+UNION
+SELECT nome, salario FROM Pessoa
+    WHERE salario = (SELECT MAX(salario) FROM Pessoa);
