@@ -65,3 +65,39 @@ SELECT nome, bairro, cidade FROM Pessoa
     RIGHT JOIN EnderecoCompleto ON idPessoa = fkPessoa 
     RIGHT JOIN Endereco ON idEndereco = fkEndereco
     WHERE fkPessoa IS NULL; 
+
+
+-- FUNÇOES MATEMÁTICAS 
+-- QUANTIDADE DE REGISTROS NA TABELA PESSOA
+-- COUNT()
+
+SELECT COUNT(*) as 'Quantidade de registros' FROM Pessoa; 
+
+INSERT INTO pessoa VALUES
+    (null, 'Estela', null);
+
+SELECT COUNT(salario) 'Quantidade de salários' FROM Pessoa;
+
+
+-- LIMIT 
+SELECT nome FROM Pessoa
+    WHERE salario > 1.00
+    LIMIT 3,2;
+
+-- SQL Server - SE UTILIZA O TOP NO LUGAR DO LIMIT E ELE FICA NO TOPO 
+
+-- MOSTRANDO O MENOR VALOR E O MAIOR VALOR
+SELECT MAX(salario) 'Maior salário', 
+       MIN(salario) 'Menor salário'
+    FROM Pessoa; 
+
+-- SUM / SOMA 
+SELECT SUM(salario) FROM Pessoa; 
+
+
+-- AVG / MEDIA 
+SELECT AVG(salario) FROM Pessoa; 
+
+--ROUND / ARRENDONDAR 
+-- ROUND( *valor que queremos arredondar*, *casas decimais*)
+SELECT ROUND(AVG(salario), 2) FROM Pessoa;  
