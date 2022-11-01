@@ -129,10 +129,11 @@ SELECT * FROM Produto
 
 SELECT SUM(preco) FROM Produto; 
 
-SELECT SUM(preco) FROM Produto p
+SELECT v.nome, SUM(preco) FROM Produto p
     JOIN VendaProduto vp ON p.idProduto = vp.fkProduto
     JOIN Venda v ON v.idVenda = vp.fkVenda 
-    WHERE v.idVenda = 1; 
+    WHERE v.idVenda = 1
+    GROUP BY v.nome; 
 
 
 
